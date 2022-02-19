@@ -3,7 +3,7 @@ version: '3'
 services:
   backend:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     ports:
       - '3000:3000'
@@ -13,4 +13,4 @@ services:
       LANG: C.UTF-8
       RAILS_ENV: development
     volumes:
-      - .:/backend
+      - ./backend:/backend
