@@ -11,5 +11,7 @@ services:
     environment:
       TZ: Asia/Tokyo
       LANG: C.UTF-8
+      RAILS_ENV: production
+      SECRET_KEY_BASE: dummy
     volumes:
       - .:/backend

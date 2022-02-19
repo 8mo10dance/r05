@@ -4,3 +4,5 @@ services:
     env: docker
     envVars:
       - key: SECRET_KEY_BASE
+      - key: RAILS_ENV
+        value: production
