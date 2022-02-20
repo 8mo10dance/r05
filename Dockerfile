@@ -4,6 +4,8 @@ ENV TZ Asia/Tokyo
 ENV BUNDLER_VERSION 2.3.6
 ENV RAILS_ENV production
 ENV SECRET_KEY_BASE dummy
+ENV RAILS_DATABASE_HOST 0.0.0.0
+ENV RAILS_DATABASE_PASSWORD password
 
 RUN gem install bundler -v "${BUNDLER_VERSION}"
 COPY Gemfile Gemfile.lock ./
