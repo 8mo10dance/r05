@@ -11,4 +11,6 @@ RUN bundle config set --local without 'development test'; \
 COPY . .
 RUN bundle exec rails assets:precompile
 
-CMD ["bundle", "exec", "puma"]
+RUN chmod 744 /startup.sh
+
+CMD ["/startup.sh"]
