@@ -3,5 +3,3 @@ services:
     name: backend
     env: docker
     dockerfilePath: ./backend/Dockerfile
-    envVars:
-      - key: SECRET_KEY_BASE
