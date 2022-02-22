@@ -8,6 +8,17 @@ const config = {
     path: path.resolve(__dirname, "../app/javascript"),
     filename: "[name]/webpack/bundle.js",
   },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
+    ],
+  },
 };
 
 module.exports = (env, argv) => {
