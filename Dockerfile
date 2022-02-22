@@ -1,4 +1,15 @@
-FROM ruby:2.7.5
+FROM node:17-alpine AS client
+
+WORKDIR /client
+
+COPY ./client/package.json ./client/yarn.lock .
+RUN yarn install
+
+COPY ./client .
+RUN yarn run build:prod
+
+
+FROM ruby:2.7.5 AS rails
 
 ARG RAILS_DATABASE_HOST
 ARG RAILS_DATABASE_PASSWORD
@@ -15,6 +26,8 @@ RUN bundle config set --local without 'development test'; \
 
 COPY . .
 RUN RAILS_ENV=${RAILS_ENV} bundle exec rake db:migrate
+
+COPY --from=client /app/javascript ./app/javascript
 RUN bundle exec rails assets:precompile
 
 RUN chmod 744 /startup.sh
