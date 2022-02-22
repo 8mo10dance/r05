@@ -2,7 +2,7 @@ const path = require("path");
 
 const config = {
   entry: {
-    home: path.resolve(__dirname, "./src/home/index.ts"),
+    home: path.resolve(__dirname, "./src/home/index.tsx"),
   },
   output: {
     path: path.resolve(__dirname, "../app/javascript"),
@@ -11,7 +11,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.(j|t)s$/,
+        test: /\.(j|t)sx?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -20,7 +20,7 @@ const config = {
     ],
   },
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: [".ts", ".tsx", ".js"],
   },
 };
 
