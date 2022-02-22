@@ -2,13 +2,14 @@ import React from 'react'
 import { CssBaseline } from '@mui/material'
 
 import Layout from '../layout/home'
+import MemoCard from './components/MemoCard'
 
 const App: React.VFC<{}> = () => {
   return (
     <>
       <CssBaseline />
       <Layout title="メモ一覧">
-        <h1>hoge</h1>
+        <MemoCard title="あああ" content="ほげえ" />
       </Layout>
     </>
   )
