@@ -1,0 +1,183 @@
+openapi: 3.0.3
+
+info:
+  version: 1.0.0
+  title: r05 api
+
+paths:
+  /api/v1/memos:
+    get:
+      operationId: getMemos
+      responses:
+        "200":
+          description: "success"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - memos
+                properties:
+                  memos:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Memo"
+    post:
+      operationId: postMemo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - memo
+              properties:
+                memo:
+                  $ref: "#/components/schemas/MemoParams"
+      responses:
+        "200":
+          description: "success"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - memo
+                properties:
+                  memo:
+                    $ref: "#/components/schemas/Memo"
+        "422":
+          description: "unprocessable entity"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - messages
+                properties:
+                  messages:
+                    type: array
+                    items:
+                      type: string
+  /api/v1/memos/{id}:
+    get:
+      operationId: getMemo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "success"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - memo
+                properties:
+                  memo:
+                    $ref: "#/components/schemas/MemoWithMemoDetails"
+    patch:
+      operationId: patchMemo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - memo
+              properties:
+                memo:
+                  $ref: "#/components/schemas/MemoParams"
+      responses:
+        "200":
+          description: "success"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - memo
+                properties:
+                  memo:
+                    $ref: "#/components/schemas/Memo"
+        "422":
+          description: "unprocessable entity"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - messages
+                properties:
+                  messages:
+                    type: array
+                    items:
+                      type: string
+    delete:
+      operationId: deleteMemo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "success"
+
+components:
+  schemas:
+    Memo:
+      type: object
+      required:
+        - id
+        - title
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+    MemoWithMemoDetails:
+      type: object
+      required:
+        - id
+        - title
+        - memo_details
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        memo_details:
+          type: array
+          items:
+            $ref: "#/components/schemas/MemoDetail"
+    MemoDetail:
+      type: object
+      required:
+        - id
+        - content
+      properties:
+        id:
+          type: integer
+        content:
+          type: string
+    MemoParams:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
