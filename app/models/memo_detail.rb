@@ -1,0 +1,2 @@
+class MemoDetail < ApplicationRecord
+end
