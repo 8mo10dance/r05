@@ -105,6 +105,8 @@ Style/StringChars: # new in 1.12
   Enabled: true
 Style/SwapValues: # new in 1.1
   Enabled: true
+Style/Documentation:
+  Enabled: false
 Rails/ActiveRecordCallbacksOrder: # new in 2.7
   Enabled: true
 Rails/AddColumnIndex: # new in 2.11
