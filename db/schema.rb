@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2022_02_26_062424) do
 
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
+    t.string "crypted_password"
+    t.string "salt"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_users_on_name", unique: true
